@@ -1,7 +1,7 @@
 var handler = async (m, { conn, command }) => {
   let user = '@' + m.sender.split('@')[0]
 
-  let str = `*Hola ${user}* (⁠◜⁠‿⁠◝⁠)⁠♡
+  let str = `*Hola ${user} (⁠◜⁠‿⁠◝⁠)⁠♡*
 
 Si estás disfrutando de nuestro Botsito y deseas apoyarnos, cualquier aporte pequeño que sea es muy bienvenido 💖
 
