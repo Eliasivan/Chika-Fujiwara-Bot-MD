@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 
 let handler = async (m, { text }) => {
   if (!text) {
-    return m.reply('${emoji} Ingresa un mensaje para enviar a la API.\n\nEjemplo: .bard Hola, ¿cómo estás?', m, rcanal);
+    return m.reply('${emoji} Ingresa un mensaje para enviar a la API.\n\nEjemplo: .bard Hola, ¿cómo estás?');
   }
 m.react('☄');
   const url = `https://api-rho-five-87.vercel.app/ai/bard?text=${encodeURIComponent(text)}`;
