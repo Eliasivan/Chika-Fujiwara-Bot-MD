@@ -13,7 +13,8 @@ const handler = async (m, { conn, args, usedPrefix, command }) => {
   }
 
   try {
-    m.reply('⏳ Procesando video, espera un momento...');
+    m.reply('*_⏳𝘗𝘳𝘰𝘤𝘦𝘴𝘢𝘯𝘥𝘰 𝘝𝘪𝘥𝘦𝘰...⏳_*');
+    m.react('🥵');
 
     const api = `https://gokublack.xyz/download/ytmp4?url=${encodeURIComponent(url)}`;
     const response = await axios.get(api);
