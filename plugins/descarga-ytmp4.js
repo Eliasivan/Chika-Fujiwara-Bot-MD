@@ -1,116 +1,53 @@
-//código creado por Dioneibi-rip
+import axios from 'axios';
 import fetch from 'node-fetch';
 
-const newsletterJid = '120363335626706839@newsletter';
-const newsletterName = '⏤͟͞ू⃪፝͜⁞⟡『 𝐓͢ᴇ𝙖፝ᴍ⃨ 𝘾𝒉꯭𝐚𝑛𝑛𝒆𝑙: 𝑹ᴜ⃜ɓ𝑦-𝑯ᴏ𝒔𝑯𝙞꯭𝑛𝒐 』࿐⟡';
-
-var handler = async (m, { conn, args, usedPrefix, command }) => {
-  const emoji = '🎥';
-  const contextInfo = {
-    mentionedJid: [m.sender],
-    isForwarded: true,
-    forwardingScore: 999,
-    forwardedNewsletterMessageInfo: {
-      newsletterJid,
-      newsletterName,
-      serverMessageId: -1
-    },
-    externalAdReply: {
-      title: namebot,
-      body: dev,
-      thumbnail: icons,
-      sourceUrl: redes,
-      mediaType: 1,
-      renderLargerThumbnail: false
-    }
-  };
-
-  if (!args[0]) {
-    return conn.reply(
-      m.chat,
-      `${emoji} *Oh senpai~* pásame un link de YouTube para traerte el videito.\n\nEjemplo de uso:\n*${usedPrefix + command} https://youtu.be/3vWtHIA2b7c*`,
-      m,
-      { contextInfo, quoted: m }
-    );
-  }
+const handler = async (m, { conn, args }) => {
+  const url = args[0];
+  if (!url) return m.reply('✏ ingrese un enlace Valido de YouTube, Shorts no descarga');
+  if (!url.includes('youtu')) return m.reply('No es enlace válido de YouTube.');
 
   try {
-    await conn.reply(
-      m.chat,
-      `🌺 *E S P E R E*\n- 🍃 Se está descargando su video, dame un momentito >w<`,
-      m,
-      { contextInfo, quoted: m }
-    );
+    m.reply('*_⏳𝘗𝘳𝘰𝘤𝘦𝘴𝘢𝘯𝘥𝘰 𝘝𝘪𝘥𝘦𝘰...⏳_*');
+    m.react('🥵');
+    const api = `https://gokublack.xyz/download/ytmp4?url=${encodeURIComponent(url)}`;
+    const response = await axios.get(api);
+    const result = response.data;
 
-    const url = args[0];
-    const api = `https://api.vreden.my.id/api/ytmp4?url=${encodeURIComponent(url)}`;
-    const res = await fetch(api);
-    const json = await res.json();
-
-    if (json.status !== 200 || !json.result?.download?.url) {
-      return conn.reply(
-        m.chat,
-        `❌ *No pude descargar el video.*\nRazón: ${json.message || 'Respuesta inválida.'}`,
-        m,
-        { contextInfo, quoted: m }
-      );
+    if (!result || !result.estado || !result.datos || !result.datos.urlDescarga) {
+      return m.reply(' No se pudo obtener el video. Intenta con otro enlace.');
     }
 
-    const {
-      title,
-      description,
-      timestamp,
-      views,
-      image,
-      author,
-      url: videoURL
-    } = json.result.metadata;
+    const { titulo = 'Video sin título', formato, urlDescarga } = result.datos;
 
-    const {
-      url: downloadURL,
-      quality,
-      filename
-    } = json.result.download;
+    try {
+      const head = await fetch(urlDescarga, { method: 'HEAD' });
+      const fileSizeBytes = parseInt(head.headers.get('content-length') || '0', 10);
+      if (isNaN(fileSizeBytes) || fileSizeBytes === 0) throw new Error();
+      const fileSizeMB = fileSizeBytes / (1024 * 1024);
+      if (fileSizeMB > 100) return m.reply(`❌ El video es muy pesado (${fileSizeMB.toFixed(2)} MB). Máximo permitido 100 MB.`);
+    } catch {
+      return m.reply('❌ No se pudo verificar el tamaño del video.');
+    }
 
-    const videoRes = await fetch(downloadURL);
-    const videoBuffer = await videoRes.buffer();
+    const caption = `*◉—⌈📥 𝐘𝐎𝐔𝐓𝐔𝐁𝐄 𝐃𝐋 📥⌋—◉*
+❏ *𝚃𝙸𝚃𝚄𝙻𝙾:* ${titulo}
+❏ *𝙵𝙾𝚁𝙼𝙰𝚃𝙾:* ${formato}
+${botname}`;
 
     await conn.sendMessage(
       m.chat,
-      {
-        video: videoBuffer,
-        caption: 
-`╭━━━━[ 𝚈𝚃𝙼𝙿𝟺 𝙳𝚎𝚌𝚘𝚍𝚎𝚍 ]━━━━⬣
-📹 *Título:* ${title}
-🧑‍💻 *Autor:* ${author?.name || 'Desconocido'}
-🕒 *Duración:* ${timestamp}
-📅 *Publicado:* ${json.result.metadata.ago}
-👁️ *Vistas:* ${views.toLocaleString()}
-🎞️ *Calidad:* ${quality}
-📄 *Descripción:*
-${description}
-╰━━━━━━━━━━━━━━━━━━⬣`,
-        mimetype: 'video/mp4',
-        fileName: filename
-      },
-      { contextInfo, quoted: m }
+      { video: { url: urlDescarga }, caption },
+      { quoted: m }
     );
-  } catch (e) {
-    console.error(e);
-    await conn.reply(
-      m.chat,
-      `❌ *Ocurrió un error al procesar el video.*\nDetalles: ${e.message}`,
-      m,
-      { contextInfo, quoted: m }
-    );
+
+  } catch {
+    m.reply('Ocurrió un error al procesar el video.');
   }
 };
 
-handler.help = ['ytmp4'].map(v => v + ' <enlace>');
-handler.tags = ['descargas'];
-handler.command = ['ytmp4', 'ytvideo', 'ytmp4dl'];
-handler.register = true;
-handler.limit = true;
-handler.coin = 3;
+handler.command = ['ytmp4'];
+handler.help = ['ytmp4 <url>'];
+handler.tags = ['downloader'];
+handler.limit = false;
 
 export default handler;
