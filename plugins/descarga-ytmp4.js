@@ -30,7 +30,7 @@ const handler = async (m, { conn, args }) => {
     }
 
     const caption = `*◉—⌈📥 𝐘𝐎𝐔𝐓𝐔𝐁𝐄 𝐃𝐋 📥⌋—◉*
-❏ *𝚃𝙸𝚃𝚄𝙻𝙾:* ${titulo}
+❏ *𝚃𝙸𝚃𝚄𝙻𝙾:* ${title}
 ${botname}`;
 
     await conn.sendMessage(
