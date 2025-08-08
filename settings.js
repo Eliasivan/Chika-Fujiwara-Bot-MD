@@ -36,25 +36,31 @@ global.libreria = 'Baileys'
 global.baileys = 'V 6.7.16' 
 global.languaje = 'Español'
 global.vs = '2.2.0'
-global.nameqr = 'Ruby-Hoshino-Bot-MD'
-global.namebot = '꒰ 🥥 ꒱ؘ 𝙍𝙪𝙗𝙮-𝙃𝙤𝙨𝙝𝙞𝙣𝙤-𝘽𝙤𝙩 ♪ ࿐ ࿔*:･ﾟ'
-global.Rubysessions = 'RubySessions'
-global.jadi = 'RubyJadiBots' 
-global.RubyJadibts = true
+global.nameqr = 'Goku-Black-Bot-MD'
+global.namebot = '꒰ 🥥 ꒱ؘ Goku-Black-Bot-MD ☄ ࿐ ࿔*:･ﾟ'
+global.sessions = 'Sessions'
+global.jadi = 'JadiBots' 
+global.Jadibts = true
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.packname = '⏤̛̣̣̣̣̣̣̣̣̣̣̣͟͟͞͞⏤͟͟͞͞🍭𝐑υׁׅ𝐛𝐲 𝐇ᨵׁׅׅ𝐬𝐡𝐢𝐧ᨵׁׅׅ ૮(˶ᵔᵕᵔ˶)ა'
-global.botname = '🕊️⃟⋆≛⃝  𝐑᪶𝐮𝐛𝐲 𝐇⃨𝐨𝐬𝐡𝐢𝐧𝐨⃛ 🔥⃝ℓє'
-global.wm = '‧˚꒰🍷꒱ ፝͜⁞R͢ᴜʙʏ-H͢ᴼ꯭s፝֟ʜɪɴᴏ-𝘉𝘰𝘵-𝑴𝑫✰⃔⃝🦋'
-global.author = 'Made By 𐔌Dioneibi-rip ͡꒱ ۫'
-global.dev = '⌬ Modified by: Dioneibi-rip ⚙️💻 '
-global.textbot = '⏤͟͞ू⃪ 𝑹𝒖𝒃𝒚-𝐻𝒐𝒔𝒉𝒊𝒏𝒐🌸⃝𖤐 • 𝗣𝗼𝘄𝗲𝗿𝗲𝗱 𝗕𝘆 ᴰⁱᵒⁿᵉⁱᵇⁱ⁻ʳⁱᵖ'
-global.etiqueta = 'ˑ 𓈒 𐔌 D͙i͙o͙n͙e͙i͙b͙i͙-r͙i͙p͙ ͡꒱ ۫'
+global.packsticker = '𝐆𝐨𝐤𝐮-𝐁𝐥𝐚𝐜𝐤-𝐁𝐨𝐭-𝐌𝐃 𖧷'
+global.packname = '𝐆𝐨𝐤𝐮-𝐁𝐥𝐚𝐜𝐤-𝐁𝐨𝐭-𝐌𝐃 💥'
+global.author = 'ꭈׁׅɑׁׅᨮׁׅ֮ᨵׁׅׅ'
+global.wm = 'ᘜOKᑌ-ᗷᒪᗩᑕK-ᗷOT-ᗰᗪ ＼ʕ •ᴥ•ʔ／'
+global.titulowm = 'ɢᴏᴋᴜ-ʙʟᴀᴄᴋ-ʙᴏᴛ-ᴍᴅ ➶➴'
+global.titulowm2 = '𝙂𝙤𝙠𝙪-𝘽𝙡𝙖𝙘𝙠-𝘽𝙤𝙩-𝙈𝘿 ☉'
+global.igfg = '𝘎𝘖𝘒𝘜-𝘉𝘓𝘈𝘊𝘒-𝘉𝘖𝘛-𝘔𝘋 💫'
+global.botname = '𝖦𝖮𝖪𝖴-𝖡𝖫𝖠𝖢𝖪-𝖡𝖮𝖳-𝖬𝖣 
+global.dev = 'Ｒａｙｏ Ｏｆｃ'
+global.textbot = '𝑮𝒐𝒌𝒖-𝑩𝒍𝒂𝒄𝒌-𝑩𝒐𝒕-𝑴𝑫 ☄︎'
+global.gt = '𝐺𝑜𝑘𝑢-𝐵𝑙𝑎𝑐𝑘-𝐵𝑜𝑡-𝑀𝐷 💥'
+global.namechannel = 'ᥬ𝑮𝑶𝑲𝑼-𝑩𝑳𝑨𝑪𝑲-𝑩𝑶𝑻-𝑴𝑫​᭄'global.etiqueta = 'ˑ 𓈒 𐔌 Rayo ͡꒱ ۫'
+
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.moneda = 'Zeni'
+global.moneda = 'Ki'
 global.welcom1 = '❍ Edita Con El Comando setwelcome'
 global.welcom2 = '❍ Edita Con El Comando setbye'
 global.banner = 'https://raw.githubusercontent.com/The-King-Destroy/Adiciones/main/Contenido/1747289219876.jpeg'
@@ -62,10 +68,10 @@ global.avatar = 'https://qu.ax/RYjEw.jpeg'
 
 //*─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─⭒─ׄ─ׅ─ׄ─*
 
-global.gp1 = 'https://chat.whatsapp.com/Hgl5fQI7UhtEj6Cr6Rpo5w?mode=ac_t'
-global.comunidad1 = 'https://chat.whatsapp.com/K2CPrOTksiA36SW6k41yuR'
-global.channel = 'https://whatsapp.com/channel/0029VakLbM76mYPPFL0IFI3P'
-global.channel2 = 'https://whatsapp.com/channel/0029VakLbM76mYPPFL0IFI3P'
+global.gp1 = ''
+global.comunidad1 = ''
+global.channel = ''
+global.channel2 = ''
 global.md = 'https://github.com/Dioneibi-rip/Ruby-Hoshino-Bot'
 global.correo = 'dioneibipaselomendes@gmail.com'
 global.cn ='https://whatsapp.com/channel/0029VakLbM76mYPPFL0IFI3P';
