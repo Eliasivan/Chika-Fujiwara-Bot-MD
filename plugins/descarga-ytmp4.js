@@ -45,9 +45,9 @@ const handler = async (m, { conn, args, usedPrefix, command }) => {
       return m.reply('❌ No se pudo verificar el tamaño del video.');
     }
 
-    const caption = `📹 *Título:* ${title}
-🎞️ *Formato:* ${format}
-📥 *Listo para descargar*`;
+    const caption = `*◉—⌈📥 𝐘𝐎𝐔𝐓𝐔𝐁𝐄 𝐃𝐋 📥⌋—◉*
+❏ *𝚃𝙸𝚃𝚄𝙻𝙾:* ${title}
+❏ *Formato:* ${format}`;
 
     await conn.sendMessage(
       m.chat,
