@@ -5,15 +5,15 @@ const handler = async (m, { conn, args, usedPrefix, command }) => {
   const url = args[0];
 
   if (!url) {
-    return m.reply(`ingrese un enlace de YouTube, Short no descarga\n\n*Ejemplo:* ${usedPrefix}${command} <enlace>`);
+    return m.reply(`Ingrese un enlace de YouTube. Shorts no descarga.\n\n*Ejemplo:* ${usedPrefix}${command} <enlace>`);
   }
 
   if (!url.includes('youtu')) {
-    return m.reply('Ese no parece un enlace válido de YouTube');
+    return m.reply('Ese no parece un enlace válido de YouTube.');
   }
 
   try {
-    m.reply('⏳ *Loading Video.....*');
+    m.reply('⏳ *Cargando video...*');
     m.react('💦');
 
     const api = `https://gokublack.xyz/download/ytmp4?url=${encodeURIComponent(url)}`;
@@ -35,22 +35,22 @@ const handler = async (m, { conn, args, usedPrefix, command }) => {
       const fileSizeBytes = parseInt(head.headers.get('content-length') || '0', 10);
 
       if (isNaN(fileSizeBytes) || fileSizeBytes === 0) {
-        throw new Error('No se pudo obtener el tamaño del archivo');
+        throw new Error();
       }
 
       const fileSizeMB = fileSizeBytes / (1024 * 1024);
       if (fileSizeMB > 100) {
-        return m.reply(`El video es muy pesado (${fileSizeMB.toFixed(2)} MB). WhatsApp permite máximo 100 MB`);
+        return m.reply(`El video es muy pesado (${fileSizeMB.toFixed(2)} MB). WhatsApp permite máximo 100 MB.`);
       }
     } catch (error) {
-      console.error('Error al verificar
-No se pudo verificar el tamaño del video');
+      console.error('Error al verificar tamaño del video');
+      m.reply('⚠️ No se pudo verificar el tamaño del video.');
     }
 
-    const caption = ` *YTMP4*
-    *Título:* ${title}
-   *Formato:* ${format}
-  *Calidad:480*`;
+    const caption = `*YTMP4*
+❏ *Título:* ${title}
+❏ *Formato:* ${format}
+❏ *Calidad:* 480p`;
 
     await conn.sendMessage(
       m.chat,
@@ -63,7 +63,7 @@ No se pudo verificar el tamaño del video');
 
   } catch (err) {
     console.error('Error interno:', err);
-    m.reply('Ocurrió un error al procesar el video. Intenta de nuevo más tarde');
+    m.reply('Ocurrió un error al procesar el video. Intenta de nuevo más tarde.');
   }
 };
 
