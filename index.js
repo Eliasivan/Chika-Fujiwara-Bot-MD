@@ -44,6 +44,10 @@ const { CONNECTING } = ws
 const { chain } = lodash
 const PORT = process.env.PORT || process.env.SERVER_PORT || 3000
 
+const SESSION_DIR = './${Sessions}'
+if (!existsSync(SESSION_DIR)) {
+  mkdirSync(SESSION_DIR, { recursive: true })
+}
 //const yuw = dirname(fileURLToPath(import.meta.url))
 //let require = createRequire(megu)
 let { say } = cfonts
