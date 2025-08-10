@@ -5,23 +5,23 @@ const handler = async (m, { conn, args, usedPrefix, command }) => {
   const url = args[0];
 
   if (!url) {
-    return m.reply(`❌ Por favor proporciona un enlace de YouTube.\n\n*Uso:* ${usedPrefix}${command} <enlace>`);
+    return m.reply(`ingrese un enlace de YouTube, Short no descarga\n\n*Ejemplo:* ${usedPrefix}${command} <enlace>`);
   }
 
   if (!url.includes('youtu')) {
-    return m.reply('❌ Ese no parece un enlace válido de YouTube.');
+    return m.reply('Ese no parece un enlace válido de YouTube');
   }
 
   try {
-    m.reply('*_⏳𝘗𝘳𝘰𝘤𝘦𝘴𝘢𝘯𝘥𝘰 𝘝𝘪𝘥𝘦𝘰...⏳_*');
-    m.react('🥵');
+    m.reply('⏳ *Loading Video.....*');
+    m.react('💦');
 
     const api = `https://gokublack.xyz/download/ytmp4?url=${encodeURIComponent(url)}`;
     const response = await axios.get(api);
     const result = response.data;
 
     if (!result || !result.status || !result.data || !result.data.downloadURL) {
-      return m.reply('❌ No se pudo obtener el video. Intenta con otro enlace.');
+      return m.reply('No se pudo obtener el video. Intenta con otro enlace.');
     }
 
     const {
@@ -35,20 +35,22 @@ const handler = async (m, { conn, args, usedPrefix, command }) => {
       const fileSizeBytes = parseInt(head.headers.get('content-length') || '0', 10);
 
       if (isNaN(fileSizeBytes) || fileSizeBytes === 0) {
-        throw new Error();
+        throw new Error('No se pudo obtener el tamaño del archivo');
       }
 
       const fileSizeMB = fileSizeBytes / (1024 * 1024);
       if (fileSizeMB > 100) {
-        return m.reply(`❌ El video es muy pesado (${fileSizeMB.toFixed(2)} MB). WhatsApp permite máximo ~100 MB.`);
+        return m.reply(`El video es muy pesado (${fileSizeMB.toFixed(2)} MB). WhatsApp permite máximo 100 MB`);
       }
-    } catch {
-      return m.reply('❌ No se pudo verificar el tamaño del video.');
+    } catch (error) {
+      console.error('Error al verificar
+No se pudo verificar el tamaño del video');
     }
 
-    const caption = `*◉—⌈📥 𝐘𝐎𝐔𝐓𝐔𝐁𝐄 𝐃𝐋 📥⌋—◉*
-❏ *𝚃𝙸𝚃𝚄𝙻𝙾:* ${title}
-❏ *Formato:* ${format}`;
+    const caption = ` *YTMP4*
+    *Título:* ${title}
+   *Formato:* ${format}
+  *Calidad:480*`;
 
     await conn.sendMessage(
       m.chat,
@@ -59,8 +61,9 @@ const handler = async (m, { conn, args, usedPrefix, command }) => {
       { quoted: m }
     );
 
-  } catch {
-    m.reply('❌ Ocurrió un error al procesar el video. Intenta de nuevo más tarde.');
+  } catch (err) {
+    console.error('Error interno:', err);
+    m.reply('Ocurrió un error al procesar el video. Intenta de nuevo más tarde');
   }
 };
 
