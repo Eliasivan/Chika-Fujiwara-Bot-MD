@@ -25,7 +25,7 @@ let handler = async (m, { conn, usedPrefix, command, args }) => {
             m.chat,
             fb.url,
             'video.mp4',
-            `❍ *Título:* ${fb.title || 'Desconocido'}\n❍ *Calidad:* ${fb.quality}\n❍ *Tamaño:* ${formattedSize}`,
+            `*Aqui tienes* 💫\n❍ *Calidad:* ${fb.quality}\n❍ *Tamaño:* ${formattedSize}`,
             m,
             false,
             { thumbnail: fb.thumbnail ? await (await fetch(fb.thumbnail)).buffer() : null }
