@@ -1,3 +1,7 @@
+/* Codigo creado por Rayo-ofc dejen creditos 
+Canal de codigos
+https://whatsapp.com/channel/0029VasrQq2Gk1G1THOKwS2L
+*/
 import fetch from 'node-fetch';
 
 let handler = async (m, { conn, usedPrefix, command, args }) => {
