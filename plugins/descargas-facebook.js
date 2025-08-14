@@ -1,49 +1,80 @@
-import { igdl } from 'ruhend-scraper'
+import fetch from 'node-fetch';
 
-const handler = async (m, { text, conn, args }) => {
-  if (!args[0]) {
-    return conn.reply(m.chat, `${emoji} Por favor, ingresa un enlace de Facebook.`, m)
-  }
+let handler = async (m, { conn, usedPrefix, command, args }) => {
+    try {
+        if (!args[0]) {
+            return m.reply(`🌿 Ejemplo de uso: ${usedPrefix + command} https://www.facebook.com/share/r/1EaRMLuT1p/`);
+        }
 
-  let res;
-  try {
-    await m.react(rwait);
-    res = await igdl(args[0]);
-  } catch (e) {
-    return conn.reply(m.chat, `${msm} Error al obtener datos. Verifica el enlace.`, m)
-  }
+        if (!args[0].match(/(?:https?:\/\/(www\.|web\.|m\.)?(facebook|fb)\.(com|watch)\/\S+)?$/)) {
+            return m.reply("✰ Enlace inválido. Asegúrate de que sea un enlace de Facebook válido.");
+        }
 
-  let result = res.data;
-  if (!result || result.length === 0) {
-    return conn.reply(m.chat, `${emoji2} No se encontraron resultados.`, m)
-  }
+        m.react('🕒');
 
-  let data;
-  try {
-    data = result.find(i => i.resolution === "720p (HD)") || result.find(i => i.resolution === "360p (SD)");
-  } catch (e) {
-    return conn.reply(m.chat, `${msm} Error al procesar los datos.`, m)
-  }
+        let fb = await getFacebookHD(args[0]);
 
-  if (!data) {
-    return conn.reply(m.chat, `${emoji2} No se encontró una resolución adecuada.`, m)
-  }
+        if (!fb || !fb.url) {
+            return m.reply("✰ No se pudo obtener el video. Asegúrate de que el enlace sea público y correcto.");
+        }
 
-  let video = data.url;
-  try {
-    await conn.sendMessage(m.chat, { video: { url: video }, caption: `${emoji} Aqui tienes tu video de Facebook :3.`, fileName: 'fb.mp4', mimetype: 'video/mp4' }, { quoted: m })
-    await m.react(done);
-  } catch (e) {
-    return conn.reply(m.chat, `${msm} Error al enviar el video.`, m)
-    await m.react(error);
-  }
+        let fileSize = await getFileSize(fb.url);
+        let formattedSize = fileSize ? formatBytes(fileSize) : 'Desconocido';
+
+        await conn.sendFile(
+            m.chat,
+            fb.url,
+            'video.mp4',
+            `❍ *Título:* ${fb.title || 'Desconocido'}\n❍ *Calidad:* ${fb.quality}\n❍ *Tamaño:* ${formattedSize}`,
+            m,
+            false,
+            { thumbnail: fb.thumbnail ? await (await fetch(fb.thumbnail)).buffer() : null }
+        );
+    } catch (e) {
+        console.error("✰ Error al procesar:", e);
+        return conn.reply(m.chat, `🛑 Error al descargar el video:\n${e.message}`, m);
+    }
+};
+
+handler.help = ["facebook"];
+handler.command = ["fb", "facebook"];
+handler.tags = ["download"];
+export default handler;
+
+async function getFacebookHD(url) {
+    try {
+        const api = `https://gokublack.xyz/download/facebook?url=${encodeURIComponent(url)}`;
+        const res = await fetch(api);
+        const json = await res.json();
+
+        if (!json.result || !json.result.media) {
+            throw new Error("Respuesta inválida de la API.");
+        }
+
+        return {
+            url: json.result.media,
+            title: json.result['título'],
+            thumbnail: json.result.miniatura,
+            quality: '720p'
+        };
+    } catch (err) {
+        throw new Error("Fallo al contactar la api");
+    }
 }
 
-handler.help = ['facebook', 'fb']
-handler.tags = ['descargas']
-handler.command = ['facebook', 'fb']
-handler.group = true;
-handler.register = true;
-handler.coin = 2;
+async function getFileSize(url) {
+    try {
+        const res = await fetch(url, { method: 'HEAD' });
+        const length = res.headers.get("content-length");
+        return length ? parseInt(length) : null;
+    } catch {
+        return null;
+    }
+}
 
-export default handler
+function formatBytes(bytes) {
+    if (bytes === 0) return "0 B";
+    const sizes = ["B", "KB", "MB", "GB", "TB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(1024));
+    return (bytes / Math.pow(1024, i)).toFixed(2) + " " + sizes[i];
+}
