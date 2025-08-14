@@ -48,7 +48,7 @@ async function getFacebookHD(url) {
         const json = await res.json();
 
         if (!json.result || !json.result.media) {
-            throw new Error("Respuesta inválida de la API.");
+            throw new Error("Respuesta inválida de la api,revisa si la api funciona perfectamente");
         }
 
         return {
