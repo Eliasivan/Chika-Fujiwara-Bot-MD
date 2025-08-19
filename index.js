@@ -11,7 +11,7 @@ import fs, { readdirSync, statSync, unlinkSync, existsSync, mkdirSync, readFileS
 import yargs from 'yargs'
 import { spawn, execSync } from 'child_process'
 import lodash from 'lodash'
-//import { yukiJadiBot } from './plugins/jadibot-serbot.js'
+//import { JadiBot } from './plugins/jadibot-serbot.js'
 import chalk from 'chalk'
 import syntaxerror from 'syntax-error'
 import { tmpdir } from 'os'
@@ -38,13 +38,13 @@ const { chain } = lodash
 const PORT = process.env.PORT || process.env.SERVER_PORT || 3000
 
 let { say } = cfonts
-console.log(chalk.magentaBright('\n❀ Iniciando...'))
-say('Yuki Suou', {
+console.log(chalk.magentaBright('\nIniciando Bot...'))
+say('Goku Black', {
 font: 'simple',
 align: 'left',
 gradient: ['green', 'white']
 })
-say('Made with love by Destroy', {
+say('Mi Desarrollador Dev-Rayo', {
 font: 'console',
 align: 'center',
 colors: ['cyan', 'magenta', 'yellow']
@@ -180,7 +180,7 @@ addNumber = phoneNumber.replace(/\D/g, '')
 setTimeout(async () => {
 let codeBot = await conn.requestPairingCode(addNumber)
 codeBot = codeBot?.match(/.{1,4}/g)?.join("-") || codeBot
-console.log(chalk.bold.white(chalk.bgMagenta(`[ ✿ ]  Código:`)), chalk.bold.white(chalk.white(codeBot)))
+console.log(chalk.bold.white(chalk.bgMagenta(`Codigo:`)), chalk.bold.white(chalk.white(codeBot)))
 }, 3000)
 }}}}
 conn.isInit = false
