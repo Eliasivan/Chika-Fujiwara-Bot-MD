@@ -1,6 +1,7 @@
+[EN]
 MIT License
 
-Copyright (c) 2025 The-King-Destroy
+Copyright (c) 2025 Dev-Rayo
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -18,4 +19,65 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+[ARA]
+رخصة MIT
+
+حقوق الطبع والنشر (c) 2025 Dev-Rayo
+
+يُمنح الإذن بموجبه، مجانًا، لأي شخص يحصل على نسخة
+من هذا البرنامج وملفات التوثيق المرتبطة به ("البرنامج") للتعامل
+في البرنامج دون قيود، بما في ذلك، على سبيل المثال لا الحصر، حقوق الاستخدام، النسخ، التعديل، الدمج،
+النشر، التوزيع، الترخيص الفرعي و/أو بيع نسخ من البرنامج، والسماح للأشخاص الذين يتم تزويدهم بالبرنامج
+للقيام بذلك، وفقًا للشروط التالية:
+
+يجب أن يتضمن إشعار حقوق الطبع والنشر أعلاه وإشعار الإذن هذا في جميع
+النسخ أو الأجزاء الجوهرية من البرنامج.
+
+يُقدَّم البرنامج "كما هو"، دون أي ضمان من أي نوع، صريح أو ضمني،
+بما في ذلك، على سبيل المثال لا الحصر، الضمانات الخاصة بالقابلية للتسويق،
+الملاءمة لغرض معين وعدم الانتهاك. في أي حال من الأحوال لا يكون
+المؤلفون أو أصحاب حقوق الطبع والنشر مسؤولين عن أي مطالبة أو أضرار أو أي
+مسؤولية أخرى، سواء في دعوى تعاقدية أو ضررية أو غيرها، تنشأ عن، أو
+بسبب البرنامج أو استخدامه أو أي تعاملات أخرى في البرنامج.
+
+[JA]
+MITライセンス
+
+Copyright (c) 2025 Dev-Rayo
+
+本ソフトウェアおよび関連文書ファイル（以下「ソフトウェア」）の複製を取得するすべての人に、
+ソフトウェアを無制限に取り扱う許可を無償で付与します。これには、使用、複製、改変、結合、
+公開、配布、サブライセンス、販売、ならびにソフトウェアを提供された者に同様の行為を許可する
+権利を含みます。ただし、以下の条件に従うものとします。
+
+上記の著作権表示および本許諾表示は、ソフトウェアのすべての複製または重要な部分に
+含めなければなりません。
+
+本ソフトウェアは「現状のまま」で提供され、明示または黙示を問わず、いかなる保証もありません。
+ここには、商品性、特定目的への適合性、および権利非侵害に関する保証を含みますが、
+これらに限定されません。著作者または著作権者は、契約行為、不法行為、またはその他に起因または
+関連して生じる一切の請求、損害、またはその他の責任について責任を負いません。
+
+[ES]
+Licencia MIT
+
+Copyright (c) 2025 Dev-Rayo
+
+Por la presente se concede permiso, de manera gratuita, a cualquier persona que obtenga una copia
+de este software y de los archivos de documentación asociados (el "Software"), para utilizar el
+Software sin restricción, incluyendo sin limitación los derechos a usar, copiar, modificar, fusionar,
+publicar, distribuir, sublicenciar y/o vender copias del Software, y a permitir a las personas a
+quienes se les proporcione el Software a hacer lo mismo, sujeto a las siguientes condiciones:
+
+El aviso de copyright anterior y este aviso de permiso deberán incluirse en todas
+las copias o partes sustanciales del Software.
+
+EL SOFTWARE SE PROPORCIONA "TAL CUAL", SIN GARANTÍA DE NINGÚN TIPO, EXPRESA O
+IMPLÍCITA, INCLUYENDO PERO NO LIMITÁNDOSE A LAS GARANTÍAS DE COMERCIABILIDAD,
+IDONEIDAD PARA UN PROPÓSITO PARTICULAR Y NO INFRACCIÓN. EN NINGÚN CASO LOS
+AUTORES O TITULARES DEL COPYRIGHT SERÁN RESPONSABLES DE NINGUNA RECLAMACIÓN, DAÑO
+U OTRA RESPONSABILIDAD, YA SEA POR UNA ACCIÓN CONTRACTUAL, AGRAVIO O DE OTRA ÍNDOLE,
+QUE SURJA DE, O EN CONEXIÓN CON EL SOFTWARE O EL USO U OTROS TRATOS EN EL
 SOFTWARE.
