@@ -44,7 +44,7 @@ const iconUrls = [
 const iconUrl = pickRandom(iconUrls)
 global.icono = await getBuffer(iconUrl)
 
-global.creador = 'Wa.me/18294868853'
+global.creador = 'Wa.me/595972157130'
 global.asistencia = 'Wa.me/18294868853'
 global.namechannel = '⏤͟͞ू⃪፝͜⁞⟡『 𝐓͢ᴇ𝙖፝ᴍ⃨ 𝘾𝒉꯭𝐚𝑛𝑛𝒆𝑙: g᥆kᥙ-ᑲᥣᥲᥴk-ᑲ᥆𝗍-mძ 』࿐⟡'
 global.namechannel2 = '⟡『 𝐓𝐞𝐚𝐦 𝐂𝐡𝐚𝐧𝐧𝐞𝐥: g᥆kᥙ-ᑲᥣᥲᥴk-ᑲ᥆𝗍-mძ 』⟡'
