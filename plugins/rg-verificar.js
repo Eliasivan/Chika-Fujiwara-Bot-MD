@@ -1,88 +1,81 @@
 import { createHash } from 'crypto'
 
-const REGEX_REGISTRO = /\|?\s*([^.]+)\s*\.\s*(\d+)\s*$/i
+let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i
+
+const canales = 'https://whatsapp.com/channel/0029VaYh3Zm4dTnQKQ3VLT0h';
 
 let handler = async function (m, { conn, text, usedPrefix, command }) {
-    const user = global.db.data.users[m.sender]
-    const nombreUsuario = conn.getName(m.sender)
-    const imagen_url_registro = 'https://files.catbox.moe/ittzuq.webp'
+  let user = global.db.data.users[m.sender]
+  let name2 = conn.getName(m.sender)
 
-    if (user.registered === true) {
-        const mensajeYaRegistrado = `🌟 ¡Ya brillas en nuestra comunidad! 🌟\n\nNo es necesario que te registres de nuevo. Si quieres empezar de cero, puedes usar el comando:\n*${usedPrefix}unreg*`
-        return m.reply(mensajeYaRegistrado)
-    }
+  if (user.registered === true) throw `*『✦』Ya estás registrado, para volver a registrarte, usa el comando: #unreg*`
+  if (!Reg.test(text)) throw `*『✦』El comando ingresado es incorrecto, uselo de la siguiente manera:*\n\n#reg *Nombre.edad*\n\n\`\`\`Ejemplo:\`\`\`\n#reg *${name2}.18*`
 
-    if (!REGEX_REGISTRO.test(text)) {
-        const mensajeErrorFormato = `💖 ¡Ups! Parece que el formato no es el correcto. 💖\n\nUsa el comando así:\n*${usedPrefix}reg ${nombreUsuario}.18*\n\n Sustituye "${nombreUsuario}" por tu nombre y "18" por tu edad.`
-        return m.reply(mensajeErrorFormato)
-    }
+  let [_, name, splitter, age] = text.match(Reg)
 
-    let [_, nombre, edad] = text.match(REGEX_REGISTRO)
-    
-    if (!nombre) return m.reply('🎤 ¡Espera! Tu nombre es esencial para ser una estrella. No lo dejes en blanco.')
-    if (nombre.length > 30) return m.reply('💖 Tu nombre es muy largo, ¡intenta con uno más corto y pegadizo!')
-    
-    edad = parseInt(edad)
-    if (edad < 10) return m.reply('✨ ¡Aún eres una estrella en crecimiento! Debes tener al menos 10 años.')
-    if (edad > 80) return m.reply('🌟 ¡La experiencia es valiosa! Pero la edad parece un poco alta, ¿estás seguro?')
+  if (!name) throw '*『✦』No puedes registrarte sin nombre, el nombre es obligatorio. Inténtelo de nuevo.*'
+  if (!age) throw '*『✦』No puedes registrarte sin la edad, la edad es opcional. Inténtelo de nuevo.*'
+  if (name.length >= 30) throw '*『✦』El nombre no debe tener más de 30 caracteres.*' 
 
-    user.name = nombre.trim()
-    user.age = edad
-    user.regTime = Date.now()
-    user.registered = true
-    
-    const recompensa = {
-        money: 600,
-        estrellas: 10,
-        exp: 245,
-        joincount: 5
-    }
-    user.money += recompensa.money
-    user.estrellas += recompensa.estrellas
-    user.exp += recompensa.exp
-    user.joincount += recompensa.joincount
+  age = parseInt(age)
 
-    const mensajeExito = `
-╭━┄━┄━┄━┄━┄━┄━┄━┄━┄━╮
-┃      💎✨ ¡BIENVENID@ AL ESCENARIO! ✨💎
-┣━┄━┄━┄━┄━┄━┄━┄━┄━┄━╯
-┃
-┃ 🎤 𝐍𝐨𝐦𝐛𝐫𝐞: ${nombre}
-┃ 🎂 𝐄𝐝𝐚𝐝: ${edad} años
-┃
-┃ ¡Tu registro ha sido un éxito! 
-┃ Ahora eres oficialmente parte del 
-┃ club de fans. ¡Prepárate para brillar!
-┃ 
-┣━━━ • 💖 Recompensas Obtenidas 💖 • ━━━
-┃
+  if (age > 999) throw '*『😏』¡Viejo/a Sabroso/a!*'
+  if (age < 5) throw '*¿𝐃𝐨𝐧𝐝𝐞 𝐞𝐬𝐭𝐚𝐧 𝐭𝐮𝐬 𝐩𝐚𝐩á𝐬?*😂'
+
+  user.name = name.trim()
+  user.age = age
+  user.regTime = + new Date
+  user.registered = true
+
+  const recompensa = {
+    money: 600,
+    estrellas: 10,
+    exp: 245,
+    joincount: 5
+  }
+
+  user.money += recompensa.money
+  user.estrellas += recompensa.estrellas
+  user.exp += recompensa.exp
+  user.joincount += recompensa.joincount
+
+  let sn = createHash('md5').update(m.sender).digest('hex').slice(0, 6)        
+  m.react('📩') 
+
+  let regbot = `╭══• ೋ•✧๑♡๑✧•ೋ •══╮
+*¡𝚁𝙴𝙶𝙸𝚂𝚃𝚁𝙾 𝙲𝙾𝙼𝙿𝙻𝙴𝚃𝙾 𝙴𝚇𝙸𝚃𝙾𝚂𝙾!*
+╰══• ೋ•✧๑♡๑✧•ೋ •══╯
+║_-~-__-~-__-~-__-~-__-~-__-~-__-~-__-~-__-~-__-~-__
+║
+┃ 🪪 Nombre: ${name}
+┃ 🎂 Edad: ${age} *Años*
+║
 ┃ 💵 Dinero: +${recompensa.money}
 ┃ 🌟 Estrellas: +${recompensa.estrellas}
 ┃ 📈 EXP: +${recompensa.exp}
 ┃ 🎟️ Tokens: +${recompensa.joincount}
-┃
-╰━┄━┄━┄━┄━┄━┄━┄━┄━┄━╮
-     *Usa ${usedPrefix}menu para ver los reflectores*
-╰━━━━━━━━━━━━━━━━━━━━╯
-`
+║
+║ 📝 *Utiliza* *.menu* *para ver el menú de comandos.*
+╚══✦「꧙꧙꧙꧙꧙꧙꧙꧙꧙꧙꧙꧙」`
 
-    await conn.sendMessage(m.chat, {
-        text: mensajeExito,
-        contextInfo: {
-            externalAdReply: {
-                title: '✨💖 ¡REGISTRO COMPLETADO! 💖✨',
-                body: `¡Bienvenid@, ${nombre}!`,
-                thumbnailUrl: imagen_url_registro,
-                sourceUrl: 'https://github.com/Dioneibi-rip/Ruby-Hoshino-Bot',
-                mediaType: 1,
-                renderLargerThumbnail: true
-            }
-        }
-    }, { quoted: m });
-};
+  conn.sendMessage(m.chat, {
+    text: regbot,
+    contextInfo: {
+      externalAdReply: {
+        title: '⊱『✅𝆺𝅥 𝗥𝗘𝗚𝗜𝗦𝗧𝗥𝗔𝗗𝗢(𝗔) 𝆹𝅥✅』⊰',
+        body: wm, 
+        thumbnailUrl: 'https://telegra.ph/file/0bb7e9e7c8cb4e820f1fe.jpg', 
+        sourceUrl: canales,
+        mediaType: 1,
+        showAdAttribution: true,
+        renderLargerThumbnail: true,
+      }
+    }
+  }, { quoted: fkontak })
+}
 
-handler.help = ['reg <nombre.edad>']
+handler.help = ['reg']
 handler.tags = ['rg']
-handler.command = ['verify', 'verificar', 'reg', 'register', 'registrar']
+handler.command = ['verify', 'verificar', 'reg', 'register', 'registrar'] 
 
 export default handler
