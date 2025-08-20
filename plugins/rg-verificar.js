@@ -62,8 +62,7 @@ let handler = async function (m, { conn, text, usedPrefix, command }) {
       externalAdReply: {
         title: '⊱『✅𝆺𝅥 𝗥𝗘𝗚𝗜𝗦𝗧𝗥𝗔𝗗𝗢(𝗔) 𝆹𝅥✅』⊰',
         body: wm, 
-        thumbnailUrl: 'https://telegra.ph/file/0bb7e9e7c8cb4e820f1fe.jpg', 
-        sourceUrl: rcanal,
+        thumbnailUrl: 'https://telegra.ph/file/0bb7e9e7c8cb4e820f1fe.jpg',
         mediaType: 1,
         showAdAttribution: true,
         renderLargerThumbnail: true,
