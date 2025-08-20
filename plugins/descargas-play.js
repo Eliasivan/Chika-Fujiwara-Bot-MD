@@ -39,22 +39,23 @@ const handler = async (m, { conn, text, command }) => {
       const apiUrl = `https://gokublack.xyz/download/ytmp3?url=${encodeURIComponent(video.url)}`;
       const res = await fetch(apiUrl).then(r => r.json());
 
-      if (!res.status || !res.data?.result?.download?.url) {
+      const download = res.data?.result?.download;
+      if (!res.status || !download?.url) {
         return conn.reply(m.chat, `❌ Error al obtener audio.`, m);
       }
 
       if (command === "ytmp3doc") {
         await conn.sendMessage(m.chat, {
-          document: { url: res.data.result.download.url },
+          document: { url: download.url },
           mimetype: "audio/mpeg",
-          fileName: res.data.result.download.filename
+          fileName: download.filename
         }, { quoted: m });
         await m.react("📄");
       } else {
         await conn.sendMessage(m.chat, {
-          audio: { url: res.data.result.download.url },
+          audio: { url: download.url },
           mimetype: "audio/mpeg",
-          fileName: res.data.result.download.filename,
+          fileName: download.filename,
           ptt: true
         }, { quoted: m });
         await m.react("🎶");
