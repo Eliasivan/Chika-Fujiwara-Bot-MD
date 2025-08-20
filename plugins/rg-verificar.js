@@ -41,9 +41,8 @@ let handler = async function (m, { conn, text }) {
   m.react('📩') 
 
   let regbot = `╭══• ೋ•✧๑♡๑✧•ೋ •══╮
-*¡𝚁𝙴𝙶𝙸𝚂𝚃𝚁𝙾 𝙲𝙾𝙼𝙿𝙻𝙴𝚃𝙾 𝙴𝚇𝙸𝚃𝙾𝚂𝙾!*
+*¡REGISTRO COMPLETO EXITOSO!*
 ╰══• ೋ•✧๑♡๑✧•ೋ •══╯
-║_-~-__-~-__-~-__-~-__-~-__-~-__-~-__-~-__-~-__-~-__
 ║
 ┃ 🪪 Nombre: ${name}
 ┃ 🎂 Edad: ${age} *Años*
@@ -53,21 +52,13 @@ let handler = async function (m, { conn, text }) {
 ┃ 📈 EXP: +${recompensa.exp}
 ┃ 🎟️ Tokens: +${recompensa.joincount}
 ║
-║ 📝 *Utiliza* *.menu* *para ver el menú de comandos.*
-╚══✦「꧙꧙꧙꧙꧙꧙꧙꧙꧙꧙꧙꧙」`
+║ 📝 Usa *.menu* para ver el menú de comandos.
+╚═════════════════════`
 
   await conn.sendMessage(m.chat, {
-    text: regbot,
-    contextInfo: {
-      externalAdReply: {
-                title: '⊱『✅𝆺𝅥 𝗥𝗘𝗚𝗜𝗦𝗧𝗥𝗔𝗗𝗢(𝗔) 𝆹𝅥✅』⊰',
-        body: 'Ahora ya estas en mi base d datos humano',
-        thumbnailUrl: 'https://telegra.ph/file/0bb7e9e7c8cb4e820f1fe.jpg',
-        mediaType: 1,
-        renderLargerThumbnail: true
-      }
-    }
-  }, { quoted: fkontak })
+    image: { url: 'https://telegra.ph/file/0bb7e9e7c8cb4e820f1fe.jpg' },
+    caption: regbot
+  }, { quoted: m })
 }
 
 handler.help = ['reg']
