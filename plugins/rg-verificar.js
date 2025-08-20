@@ -6,7 +6,7 @@ let handler = async function (m, { conn, text }) {
   let user = global.db.data.users[m.sender]
   if (!user) global.db.data.users[m.sender] = user = {
     registered: false, name: '', age: 0, regTime: 0,
-    money: 0, estrellas: 0, exp: 0, joincount: 0
+    money: 0, coin: 0, exp: 0, joincount: 0
   }
 
   const name2 = (await conn.getName?.(m.sender)) || 'Usuario'
@@ -29,10 +29,10 @@ let handler = async function (m, { conn, text }) {
   user.regTime = +new Date()
   user.registered = true
 
-  const recompensa = { money: 600, estrellas: 10, exp: 245, joincount: 5 }
+  const recompensa = { money: 600, coin: 100, exp: 245, joincount: 5 }
 
   user.money = (user.money || 0) + recompensa.money
-  user.estrellas = (user.estrellas || 0) + recompensa.estrellas
+  user.coin = (user.coin || 0) + recompensa.estrellas
   user.exp = (user.exp || 0) + recompensa.exp
   user.joincount = (user.joincount || 0) + recompensa.joincount
 
@@ -47,7 +47,7 @@ let handler = async function (m, { conn, text }) {
 ┃ 🎂 Edad: ${age} *Años*
 
 ┃ 💵 Dinero: +${recompensa.money}
-┃ 🌟 Estrellas: +${recompensa.estrellas}
+┃ ⚡ Ki: +${recompensa.coin}
 ┃ 📈 EXP: +${recompensa.exp}
 ┃ 🎟️ Tokens: +${recompensa.joincount}
 
