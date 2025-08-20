@@ -2,8 +2,6 @@ import { createHash } from 'crypto'
 
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i
 
-const canales = 'https://whatsapp.com/channel/0029VaYh3Zm4dTnQKQ3VLT0h';
-
 let handler = async function (m, { conn, text, usedPrefix, command }) {
   let user = global.db.data.users[m.sender]
   let name2 = conn.getName(m.sender)
@@ -65,7 +63,7 @@ let handler = async function (m, { conn, text, usedPrefix, command }) {
         title: '⊱『✅𝆺𝅥 𝗥𝗘𝗚𝗜𝗦𝗧𝗥𝗔𝗗𝗢(𝗔) 𝆹𝅥✅』⊰',
         body: wm, 
         thumbnailUrl: 'https://telegra.ph/file/0bb7e9e7c8cb4e820f1fe.jpg', 
-        sourceUrl: canales,
+        sourceUrl: rcanal,
         mediaType: 1,
         showAdAttribution: true,
         renderLargerThumbnail: true,
