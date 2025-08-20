@@ -8,16 +8,16 @@ const handler = async (m, { conn, text, command }) => {
 
   if (!text) {
     return conn.reply(m.chat,
-      `Necesito que me digas el nombre de un
-video o me pegues el link de YouTube\n\n✨ *Ejemplos:*\n.play Anuel sola remix\n.play https://youtu.be/xxx`,
-      m);
+      `Necesito que me digas el nombre de un video o me pegues el link de YouTube\n\n✨ *Ejemplos:*\n.play Anuel sola remix\n.play https://youtu.be/xxx`,
+      m
+    );
   }
 
   await m.react("🕝");
 
   const search = await yts(text);
   if (!search?.all || search.all.length === 0) {
-    return conn.reply(m.chat, `*no encontré nada con:* "${text}"`, m);
+    return conn.reply(m.chat, `*No encontré nada con:* "${text}"`, m);
   }
 
   const video = search.all[0];
@@ -35,39 +35,30 @@ video o me pegues el link de YouTube\n\n✨ *Ejemplos:*\n.play Anuel sola remix\
   }, { quoted: m });
 
   try {
-    if (command === "play" || command === "playaudio") {
+    if (command === "play" || command === "playaudio" || command === "ytmp3doc") {
       const apiUrl = `https://gokublack.xyz/download/ytmp3?url=${encodeURIComponent(video.url)}`;
       const res = await fetch(apiUrl).then(r => r.json());
 
-      if (!res.status || !res.data?.result?.download_url) {
+      if (!res.status || !res.data?.result?.download?.url) {
         return conn.reply(m.chat, `❌ Error al obtener audio.`, m);
       }
 
-      await conn.sendMessage(m.chat, {
-        audio: { url: res.data.result.download_url },
-        mimetype: "audio/mpeg",
-        fileName: res.data.result.title + ".mp3",
-        ptt: true
-      }, { quoted: m });
-
-      await m.react("🎶");
-    }
-
-    else if (command === "ytmp3doc") {
-      const apiUrl = `https://gokublack.xyz/download/ytmp3?url=${encodeURIComponent(video.url)}`;
-      const res = await fetch(apiUrl).then(r => r.json());
-
-      if (!res.status || !res.data?.result?.download_url) {
-        return conn.reply(m.chat, `❌ Error al obtener audio.`, m);
+      if (command === "ytmp3doc") {
+        await conn.sendMessage(m.chat, {
+          document: { url: res.data.result.download.url },
+          mimetype: "audio/mpeg",
+          fileName: res.data.result.download.filename
+        }, { quoted: m });
+        await m.react("📄");
+      } else {
+        await conn.sendMessage(m.chat, {
+          audio: { url: res.data.result.download.url },
+          mimetype: "audio/mpeg",
+          fileName: res.data.result.download.filename,
+          ptt: true
+        }, { quoted: m });
+        await m.react("🎶");
       }
-
-      await conn.sendMessage(m.chat, {
-        document: { url: res.data.result.download_url },
-        mimetype: "audio/mpeg",
-        fileName: res.data.result.title + ".mp3"
-      }, { quoted: m });
-
-      await m.react("📄");
     }
 
     else if (command === "play2" || command === "playvid" || command === "playvideo") {
@@ -91,9 +82,9 @@ video o me pegues el link de YouTube\n\n✨ *Ejemplos:*\n.play Anuel sola remix\
         quoted: m,
         ...(asDocument ? { asDocument: true } : {})
       });
-
       await m.react("🎥");
     }
+
   } catch (e) {
     console.error(e);
     return conn.reply(m.chat, `❌ Error inesperado:\n\`\`\`${e.message}\`\`\``, m);
