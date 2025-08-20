@@ -2,7 +2,7 @@ import { createHash } from 'crypto'
 
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i
 
-let handler = async function (m, { conn, text, usedPrefix, command }) {
+let handler = async function (m, { conn, text }) {
   let user = global.db.data.users[m.sender]
   let name2 = conn.getName(m.sender)
 
@@ -56,16 +56,15 @@ let handler = async function (m, { conn, text, usedPrefix, command }) {
 ║ 📝 *Utiliza* *.menu* *para ver el menú de comandos.*
 ╚══✦「꧙꧙꧙꧙꧙꧙꧙꧙꧙꧙꧙꧙」`
 
-  conn.sendMessage(m.chat, {
+  await conn.sendMessage(m.chat, {
     text: regbot,
     contextInfo: {
       externalAdReply: {
-        title: '⊱『✅𝆺𝅥 𝗥𝗘𝗚𝗜𝗦𝗧𝗥𝗔𝗗𝗢(𝗔) 𝆹𝅥✅』⊰',
-        body: wm, 
+                title: '⊱『✅𝆺𝅥 𝗥𝗘𝗚𝗜𝗦𝗧𝗥𝗔𝗗𝗢(𝗔) 𝆹𝅥✅』⊰',
+        body: 'Ahora ya estas en mi base d datos humano',
         thumbnailUrl: 'https://telegra.ph/file/0bb7e9e7c8cb4e820f1fe.jpg',
         mediaType: 1,
-        showAdAttribution: true,
-        renderLargerThumbnail: true,
+        renderLargerThumbnail: true
       }
     }
   }, { quoted: fkontak })
